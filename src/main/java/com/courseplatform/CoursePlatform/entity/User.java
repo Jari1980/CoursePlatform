@@ -2,8 +2,8 @@ package com.courseplatform.CoursePlatform.entity;
 
 import com.courseplatform.CoursePlatform.model.UserType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
@@ -11,6 +11,9 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder(toBuilder = true)
 public abstract class User {
     @Id
     @GeneratedValue

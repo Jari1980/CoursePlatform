@@ -1,6 +1,7 @@
 package com.courseplatform.CoursePlatform.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name = "badge")
 @Getter
 @Setter
+@Builder
 public class Badge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

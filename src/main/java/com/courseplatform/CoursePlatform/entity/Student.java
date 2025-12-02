@@ -3,8 +3,8 @@ package com.courseplatform.CoursePlatform.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -12,6 +12,9 @@ import java.util.List;
 @Table(name = "student")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Student extends User{
     private String major;
     private int enrollmentYear;
