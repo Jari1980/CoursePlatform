@@ -1,6 +1,7 @@
 package com.courseplatform.CoursePlatform.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Table(name = "student_badge")
 @Getter
 @Setter
+@Builder
 public class StudentBadge {
     @EmbeddedId
     private StudentBadgeId id;
