@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class SubmissionId implements Serializable {
-    private Long submissionId;
+    //private Long submissionId;
     private Long studentId;
     private Long assignmentId;
 }
