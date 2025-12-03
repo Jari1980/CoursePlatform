@@ -25,12 +25,14 @@ public class DataSeed implements CommandLineRunner {
     private StudentRepository studentRepository;
     private SubmissionRepository submissionRepository;
     private UserRepository userRepository;
+    private StudentBadgeRepository studentBadgeRepository;
 
     @Autowired
     public DataSeed(BadgeRepository badgeRepository, CourseAssignmentRepository courseAssignmentRepository,
                     CourseRepository courseRepository, InstructorRepository instructorRepository,
                     ModuleRepository moduleRepository, StudentRepository studentRepository,
-                    SubmissionRepository submissionRepository, UserRepository userRepository){
+                    SubmissionRepository submissionRepository, UserRepository userRepository,
+                    StudentBadgeRepository studentBadgeRepository){
         this.badgeRepository = badgeRepository;
         this.courseAssignmentRepository = courseAssignmentRepository;
         this.courseRepository = courseRepository;
@@ -39,6 +41,7 @@ public class DataSeed implements CommandLineRunner {
         this.studentRepository = studentRepository;
         this.submissionRepository = submissionRepository;
         this.userRepository = userRepository;
+        this.studentBadgeRepository = studentBadgeRepository;
     }
 
     @Override
@@ -129,5 +132,36 @@ public class DataSeed implements CommandLineRunner {
                         .build()
         );
 
+        // Submission
+        Submission submission1 = submissionRepository.save(
+                Submission.builder()
+                        .id(new SubmissionId(student1.getId(), assignment1.getId()))
+                        .courseAssignment(assignment1)
+                        .student(student1)
+                        .feedback("Ok")
+                        .grade(1.0)
+                        .build()
+        );
+
+        // Badge
+        Badge badge = badgeRepository.save(
+                Badge.builder()
+                        .description("Award for first Badge")
+                        .label("Medal of Broccoli")
+                        .build()
+        );
+        // Composite key for badge
+        StudentBadgeId id = new StudentBadgeId(
+                student1.getId(),
+                badge.getId()
+        );
+        // Saving studentbadge
+        StudentBadge award = studentBadgeRepository.save(
+                StudentBadge.builder()
+                        .id(id)
+                        .student(student1)
+                        .badge(badge)
+                        .build()
+        );
     }
 }
