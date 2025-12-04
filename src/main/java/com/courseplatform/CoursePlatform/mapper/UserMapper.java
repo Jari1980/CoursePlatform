@@ -80,4 +80,21 @@ public class UserMapper {
         instructor.setTitle(dto.getTitle());
         return instructor;
     }
+
+
+    // Update to existing entity
+
+    public void updateStudentEntity(Student student, StudentDTO dto) {
+        student.setName(dto.getName());
+        student.setEmail(dto.getEmail());
+        student.setMajor(dto.getMajor());
+        student.setEnrollmentYear(dto.getEnrollmentYear());
+    }
+
+    public void updateInstructorEntity(Instructor instructor, InstructorDTO dto) {
+        instructor.setName(dto.getName());
+        instructor.setEmail(dto.getEmail());
+        instructor.setDepartment(dto.getDepartment());
+        instructor.setTitle(dto.getTitle());
+    }
 }
