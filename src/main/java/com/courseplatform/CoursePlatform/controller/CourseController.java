@@ -42,4 +42,20 @@ public class CourseController {
     public InstructorDTO create(@RequestBody InstructorDTO dto) {
         return userService.createInstructor(dto);
     }
+    @PutMapping("/updatestudent/{id}")
+    public StudentDTO updateStudent(@PathVariable Long id, @RequestBody StudentDTO dto) {
+        return userService.updateStudent(id, dto);
+    }
+    @PutMapping("/updateinstructor/{id}")
+    public InstructorDTO updateInstructor(@PathVariable Long id, @RequestBody InstructorDTO dto) {
+        return userService.updateInstructor(id, dto);
+    }
+    @DeleteMapping("/deletestudent/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        userService.deleteStudent(id);
+    }
+    @DeleteMapping("/deleteinstructor/{id}")
+    public void deleteInstructor(@PathVariable Long id) {
+        userService.deleteInstructor(id);
+    }
 }
