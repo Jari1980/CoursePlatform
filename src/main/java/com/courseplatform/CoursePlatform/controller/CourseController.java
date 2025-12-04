@@ -7,9 +7,7 @@ import com.courseplatform.CoursePlatform.entity.Student;
 import com.courseplatform.CoursePlatform.entity.User;
 import com.courseplatform.CoursePlatform.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +33,13 @@ public class CourseController {
     @GetMapping("/getallinstructors")
     public ResponseEntity<List<InstructorDTO>> getAllInstructors(){
         return ResponseEntity.ok(userService.getAllInstructors());
+    }
+    @PostMapping("/createstudent")
+    public StudentDTO create(@RequestBody StudentDTO dto) {
+        return userService.createStudent(dto);
+    }
+    @PostMapping("/createinstructor")
+    public InstructorDTO create(@RequestBody InstructorDTO dto) {
+        return userService.createInstructor(dto);
     }
 }

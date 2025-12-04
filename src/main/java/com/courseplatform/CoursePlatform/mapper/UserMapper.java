@@ -6,10 +6,13 @@ import com.courseplatform.CoursePlatform.dto.UserDTO;
 import com.courseplatform.CoursePlatform.entity.Instructor;
 import com.courseplatform.CoursePlatform.entity.Student;
 import com.courseplatform.CoursePlatform.entity.User;
+import com.courseplatform.CoursePlatform.model.UserType;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
+
+    //Entity -> DTO
 
     public UserDTO toDTO(User user) {
         if (user instanceof Student student) {
@@ -53,5 +56,28 @@ public class UserMapper {
         dto.setDepartment(instructor.getDepartment());
         dto.setTitle(instructor.getTitle());
         return dto;
+    }
+
+
+    // DTO -> Entity
+
+    public Student toStudentEntity(StudentDTO dto) {
+        Student student = new Student();
+        student.setName(dto.getName());
+        student.setEmail(dto.getEmail());
+        student.setUsertype(UserType.STUDENT);
+        student.setMajor(dto.getMajor());
+        student.setEnrollmentYear(dto.getEnrollmentYear());
+        return student;
+    }
+
+    public Instructor toInstructorEntity(InstructorDTO dto) {
+        Instructor instructor = new Instructor();
+        instructor.setName(dto.getName());
+        instructor.setEmail(dto.getEmail());
+        instructor.setUsertype(UserType.INSTRUCTOR);
+        instructor.setDepartment(dto.getDepartment());
+        instructor.setTitle(dto.getTitle());
+        return instructor;
     }
 }
