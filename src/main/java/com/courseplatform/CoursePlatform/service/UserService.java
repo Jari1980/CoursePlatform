@@ -3,9 +3,11 @@ package com.courseplatform.CoursePlatform.service;
 import com.courseplatform.CoursePlatform.dto.InstructorDTO;
 import com.courseplatform.CoursePlatform.dto.StudentDTO;
 import com.courseplatform.CoursePlatform.dto.UserDTO;
+import com.courseplatform.CoursePlatform.entity.Instructor;
 import com.courseplatform.CoursePlatform.entity.Student;
 import com.courseplatform.CoursePlatform.entity.User;
 import com.courseplatform.CoursePlatform.mapper.UserMapper;
+import com.courseplatform.CoursePlatform.model.UserType;
 import com.courseplatform.CoursePlatform.repository.InstructorRepository;
 import com.courseplatform.CoursePlatform.repository.StudentRepository;
 import com.courseplatform.CoursePlatform.repository.UserRepository;
@@ -50,5 +52,21 @@ public class UserService {
                 .stream()
                 .map(userMapper::toInstructorDTO)
                 .toList();
+    }
+
+    public StudentDTO createStudent(StudentDTO dto) {
+        Student student = userMapper.toStudentEntity(dto);
+        student.setUsertype(UserType.STUDENT);
+        Student saved = studentRepository.save(student);
+
+        return userMapper.toStudentDTO(saved);
+    }
+
+    public InstructorDTO createInstructor(InstructorDTO dto) {
+        Instructor instructor = userMapper.toInstructorEntity(dto);
+        instructor.setUsertype(UserType.INSTRUCTOR);
+        Instructor saved = instructorRepository.save(instructor);
+
+        return userMapper.toInstructorDTO(saved);
     }
 }
